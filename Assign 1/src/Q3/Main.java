@@ -1,5 +1,5 @@
-package linkedList;
-
+package Q3;
+//How do you reverse a singly linked list without recursion? 
 public class Main {
 
 	public static void main(String[] args) {
@@ -11,13 +11,13 @@ public class Main {
 		l.insert(30);
 		l.insert(40);
 		l.insert(50);
-		l.insert(60);		
+		//l.insert(60);		
 		l.display();
 		
-		l.delByValue(40);
+		l.reverse();
 		l.display();
-		l.delByPosition(3);
-		l.display();
+		
+		
 //		l.insert(70, 1);
 //		l.display();
 //		

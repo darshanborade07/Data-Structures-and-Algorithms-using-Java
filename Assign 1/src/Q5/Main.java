@@ -1,5 +1,5 @@
-package linkedList;
-
+package Q5;
+//How do you find the length of a singly linked list?
 public class Main {
 
 	public static void main(String[] args) {
@@ -11,13 +11,12 @@ public class Main {
 		l.insert(30);
 		l.insert(40);
 		l.insert(50);
-		l.insert(60);		
+		//l.insert(60);		
 		l.display();
 		
-		l.delByValue(40);
-		l.display();
-		l.delByPosition(3);
-		l.display();
+		System.out.println(l.getCount());
+		
+		
 //		l.insert(70, 1);
 //		l.display();
 //		

@@ -1,4 +1,4 @@
-package linkedList;
+package Q1;
 
 import java.util.Stack;
 
@@ -89,65 +89,29 @@ public class LinkedList {
 		}
 		System.out.println();
 	}
-	
-    public void displayReverse() {
-        Stack<Node> stack = new Stack<Node>();
-        Node temp = head;
 
-        while(temp != null) {
-            stack.push(temp);
-            temp = temp.getNext();
-        }
-
-        while (!stack.isEmpty()) {
-            System.out.print(stack.pop().getData() + " ");
-        }
-        System.out.println();
-    }
-    
-    public boolean delByValue(int data) {
-    	if(head == null) {
+    public static boolean merge(LinkedList l1, LinkedList l2) {
+    	LinkedList l = new LinkedList();
+    	if(l1.head == null && l2.head == null) {
     		return false;
     	}
     	
-    	if(head.getData() == data) {
-    		head = null;
-    		return true;
-    	}
-    	
-    	Node prev = head, del = head;
-    	while(del.getData() != data) {
-    		prev = del;
-    		del = del.getNext();
-    		if(del == null) {
-    			return false;
+    	Node h1 = l1.getHead();
+    	Node h2 = l2.getHead();
+    	while(h1 != null || h2 != null) {
+    		if(h1 != null) {
+    			l.insert(h1.getData());
     		}
+    		h1 = h1.getNext();
+    		
+    		if(h2 != null) {
+    			l.insert(h2.getData());
+    		}
+    		h2 = h2.getNext();
     	}
-    	prev.setNext(del.getNext());
-    	return true;
-    }
-    
-    public boolean delByPosition(int pos) {
-    	if(head == null || pos <=0) {
-    		return false;
-    	}
+    	l.display();
+		return true;
     	
-    	if(pos == 1) {
-    		head = null;
-    		return true;
-    	}
-    	
-    	Node prev = head;
-    	for (int i = 1; i < pos -1; i++) {
-			prev = prev.getNext();
-			
-			if(prev.getNext() == null) {
-				return false;
-			}
-		}
-    	Node del = prev.getNext();
-		prev.setNext(del.getNext());
-    	return true;
     }
 	
 }

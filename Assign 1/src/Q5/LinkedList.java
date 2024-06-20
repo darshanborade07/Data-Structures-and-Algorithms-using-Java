@@ -1,11 +1,12 @@
-package linkedList;
+package Q5;
 
 import java.util.Stack;
 
 public class LinkedList {
 
 	private Node head;
-
+	private static int count=1;
+	
 	public LinkedList() {
 		head=null;
 	}
@@ -23,16 +24,19 @@ public class LinkedList {
 		Node newNode = new Node(data);
 		
 		if(newNode == null) {
+			count--;
 			return false;
 		}
 		
 		//NewNode added at 1st if head is null
 		if(head == null) {
 			head = newNode;
+			count++;
 			return true;
 		}
 		
 		if(head.getData()== data) {
+			count--;
 			return false;
 		}
 		
@@ -42,10 +46,12 @@ public class LinkedList {
 			temp = temp.getNext();
 			
 			if(temp.getData() == data) {
+				
 				return false;
 			}
 		}
 		temp.setNext(newNode);
+		count++;
 		return true;
 	}
 	
@@ -89,65 +95,12 @@ public class LinkedList {
 		}
 		System.out.println();
 	}
-	
-    public void displayReverse() {
-        Stack<Node> stack = new Stack<Node>();
-        Node temp = head;
 
-        while(temp != null) {
-            stack.push(temp);
-            temp = temp.getNext();
-        }
-
-        while (!stack.isEmpty()) {
-            System.out.print(stack.pop().getData() + " ");
-        }
-        System.out.println();
-    }
-    
-    public boolean delByValue(int data) {
+    public int getCount() {
     	if(head == null) {
-    		return false;
+    		return 0;
     	}
-    	
-    	if(head.getData() == data) {
-    		head = null;
-    		return true;
-    	}
-    	
-    	Node prev = head, del = head;
-    	while(del.getData() != data) {
-    		prev = del;
-    		del = del.getNext();
-    		if(del == null) {
-    			return false;
-    		}
-    	}
-    	prev.setNext(del.getNext());
-    	return true;
-    }
-    
-    public boolean delByPosition(int pos) {
-    	if(head == null || pos <=0) {
-    		return false;
-    	}
-    	
-    	if(pos == 1) {
-    		head = null;
-    		return true;
-    	}
-    	
-    	Node prev = head;
-    	for (int i = 1; i < pos -1; i++) {
-			prev = prev.getNext();
-			
-			if(prev.getNext() == null) {
-				return false;
-			}
-		}
-    	Node del = prev.getNext();
-		prev.setNext(del.getNext());
-    	return true;
+    	return count;
     }
 	
 }
