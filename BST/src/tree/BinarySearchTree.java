@@ -192,84 +192,73 @@ public class BinarySearchTree {
 		
 	}
 	
-	
-	
-//    public boolean delete(int data) {
-//        if(root == null) {
-//            return false;
-//        }
-//
-//        //locate del along with parent
-//        Node parent = root;
-//        Node del = root;
-//        while(del.getData() != data) {
-//            parent = del;
-//            if(data < del.getData()) {
-//                del = del.getLeft();
-//            }
-//            else {
-//                del = del.getRight();
-//            }
-//            //check if del is null, if del is null means the data is not existing
-//            if(del == null) {
-//                return false;
-//            }
-//        }
-//
-//        while(true) {
-//            //check if del is terminal node
-//            if (del.getLeft() == null && del.getRight() == null) {
-//                //del could be root and terminal both
-//                if (root == del) {
-//                    root = null;
-//                    return true;
-//                }
-//
-//                //check if del is left child or right child and set the appropriate link of the parent to null
-//                if (parent.getLeft() == del) {
-//                    parent.setLeft(null);
-//                } else {
-//                    parent.setRight(null);
-//                }
-//                return true;
-//            }
-//            //del is non-terminal node, shift del down the tree
-//            if (del.getLeft() != null) {
-//                //find max from left subtree
-//                Node max = del.getLeft();
-//                //parent must be following max, as max is the node which will be physically deleted
-//                parent = del;
-//                while(max.getRight() != null) {
-//                    parent = max;
-//                    max = max.getRight();
-//                }
-//                //swap del and max data
-//                int temp = del.getData();
-//                del.setData(max.getData());
-//                max.setData(temp);
-//
-//                //shift del to max, as max is containing the data to be deleted
-//                del = max;
-//            }
-//            else {
-//                //find min from right subtree
-//                Node min = del.getRight();
-//                parent = del;
-//
-//                while(min.getLeft() != null) {
-//                    parent = min;
-//                    min = min.getLeft();
-//                }
-//
-//                //swap
-//                int temp = del.getData();
-//                del.setData(min.getData());
-//                min.setData(temp);
-//
-//                del = min;
-//            }
-//        }
-//    }
+	public boolean del(int data) {
+		if(root == null) {
+			return false;
+		}
+		
+		Node parent = root;
+		Node del = root;
+		
+		while(del.getData() != data) {
+			parent = del;
+			
+			if(data < del.getData()) {
+				del = del.getLeft();
+			}else 
+				del = del.getRight();
+			
+			if(del == null) {
+				return false;
+			}
+		}
+		
+		while(true) {
+			if(del.getLeft() == null && del.getRight() == null) {
+				if(root == del) {
+					root = null;
+					return true;
+				}
+				
+				if(parent.getLeft() == null) {
+					parent.setLeft(null);
+				}else
+					parent.setRight(null);
+				
+				return true;
+			}
+			
+			if(del.getLeft() != null) {
+				Node max = root;				
+				max = max.getLeft();
+				while(max.getRight() != null) {
+					parent = max;
+					max = max.getRight();
+				}
+				int temp = del.getData();
+				del.setData(max.getData());
+				max.setData(temp);
+				
+				del = max;
+				
+			}
+			else {
+				Node min = root;
+				min = min.getRight();
+				
+				while(min.getLeft() != null) {
+					parent = min;
+					min = min.getLeft();
+				}
+				int temp = del.getData();
+				del.setData(min.getData());
+				min.setData(temp);
+				
+				del = min;
+			}
+		}
+		
+	}
 	
 	
 	public void preorder(Node r) {

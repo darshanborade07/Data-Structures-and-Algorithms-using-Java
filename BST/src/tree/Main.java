@@ -26,8 +26,9 @@ public class Main {
         System.out.print("Postorder :- ");
         bst.postorder(bst.getRoot());
         
-//        bst.delete(30);
-//        bst.preorder(bst.getRoot());
+        bst.del(30);
+        System.out.println();
+        bst.preorder(bst.getRoot());
         
 	}
 
